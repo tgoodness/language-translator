@@ -1,4 +1,4 @@
-import * as type from "/";
+import * as type from './action-type';
 import util from "../helpers/util";
 
 export const init = {
@@ -25,7 +25,7 @@ export const reducer = (state, action) => {
       return {
         loading: false,
         open: true,
-        message: action.message.data.message,
+        message: action.message,
         success: false,
       };
     case type.ERROR:

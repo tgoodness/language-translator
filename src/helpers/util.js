@@ -6,7 +6,7 @@
 const Deebezt = {
   requestError(error) {
     if (error.response) {
-      return error.response.data.error.message;
+      return error.response.data.message;
     } else {
       return error.message;
     }

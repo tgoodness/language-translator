@@ -21,19 +21,20 @@ function Request(text, source, destination) {
     }
 
     dispatch({ type: type.LOADING });
-    const params = { text, source, destination };
+    const params = { text, to: destination, from: source };
     Translate(params).then(
       (res) => {
         if (res.status === 200) {
           dispatch({
             type: type.SUCCESS,
-            payload: res.data[0].translations[0].text,
+            payload: res.data.data,
           });
         } else {
-          dispatch({ type: type.FAILED, message: res });
+          dispatch({ type: type.FAILED, message: "Something went wrong" });
         }
       },
       (error) => {
+        console.log(error);
         dispatch({ type: type.ERROR, message: error });
       }
     );

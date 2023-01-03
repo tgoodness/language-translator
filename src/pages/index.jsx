@@ -52,12 +52,12 @@ function Index() {
                     value={source}
                     onChange={(e) => setSource(e.target.value)}
                   >
-                    {Object.keys(langs).map((key, i) => {
-                      return key !== destination ? (
-                        <option value={key} key={i}>
+                    {Object.keys(langs).map((key) => {
+                      return (
+                        <option value={key} key={key}>
                           {langs[key]}
                         </option>
-                      ) : null;
+                      );
                     })}
                   </select>
 
@@ -69,11 +69,11 @@ function Index() {
                     value={destination}
                   >
                     {Object.keys(langs).map((key, i) => {
-                      return key !== source ? (
+                      return (
                         <option value={key} key={i}>
                           {langs[key]}
                         </option>
-                      ) : null;
+                      );
                     })}
                   </select>
                 </div>
@@ -89,7 +89,6 @@ function Index() {
               <h5>Result</h5>
               <div className='content'>
                 {state.loading ? (
-                  // <Spinner color='light-blade' />
                   <div className='text-center p-3'>
                     <CircularProgress />
                   </div>
