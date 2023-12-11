@@ -16,11 +16,11 @@ function AboutMe(props) {
       <div className='student-bio animate__animated animate__fadeIn'>
         <img src={StudentPhoto} width='100' alt='Logo' />
         <div>
-          <h5>HC20190201938</h5>
+          <h5>HC20200101307</h5>
           <h6>Matric Number</h6>
         </div>
         <div>
-          <h5>Omotosho Morolake</h5>
+          <h5>Akinyemi Zachariah Tobiloba</h5>
           <h6>Department</h6>
         </div>
         <div>

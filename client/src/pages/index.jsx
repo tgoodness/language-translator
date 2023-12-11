@@ -2,12 +2,14 @@ import { useState } from "react";
 import { Icon } from "@iconify/react";
 import CircularProgress from "@mui/material/CircularProgress";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import useTextToSpeech from "react-hook-text-to-speech";
 import Lady from "../assets/lady.png";
 import Header from "./Header";
 import Alert from "../components/Alert";
 import translate from "./core/translate";
 import logicHandler from "./core/LogicHandler";
 import { langs } from "./core/languages";
+
 import "./styles/index.scss";
 
 function Index() {
@@ -20,18 +22,19 @@ function Index() {
     destination
   );
 
+  const convert = useTextToSpeech();
   const [open, handleCopy, handleCloseC] = logicHandler();
 
   return (
-    <div className='container'>
+    <div className="container">
       <Header />
-      <div className='row app'>
-        <div className='col-md-6'>
-          <div className='app-description'>
-            <div className='lady-img animate__animated animate__fadeInDown'>
-              <img src={Lady} alt='Lady' width='500' className='img-fluid' />
+      <div className="row app">
+        <div className="col-md-6">
+          <div className="app-description">
+            <div className="lady-img animate__animated animate__fadeInDown">
+              <img src={Lady} alt="Lady" width="500" className="img-fluid" />
             </div>
-            <div className='animate__animated animate__fadeInLeft'>
+            <div className="animate__animated animate__fadeInLeft">
               <h2>Say no more to language hassle</h2>
               <h6>
                 Professional translation scaled by technology and enhanced by
@@ -41,13 +44,13 @@ function Index() {
           </div>
         </div>
 
-        <div className='col-md-6'>
-          <div className='translator'>
-            <h4>Language Translator</h4>
+        <div className="col-md-6">
+          <div className="translator">
+            <h4>Natural Language Translator</h4>
 
-            <div className='lang-text-container animate__animated animate__fadeInRight'>
+            <div className="lang-text-container animate__animated animate__fadeInRight">
               <>
-                <div className='languages-container'>
+                <div className="languages-container">
                   <select
                     value={source}
                     onChange={(e) => setSource(e.target.value)}
@@ -62,7 +65,7 @@ function Index() {
                   </select>
 
                   <h6>
-                    <Icon icon='ant-design:swap-right-outlined' height='25' />
+                    <Icon icon="ant-design:swap-right-outlined" height="25" />
                   </h6>
                   <select
                     onChange={(e) => setDestination(e.target.value)}
@@ -78,18 +81,18 @@ function Index() {
                   </select>
                 </div>
                 <textarea
-                  placeholder='Type to translate'
+                  placeholder="Type to translate"
                   value={text}
                   onChange={(e) => setText(e.target.value)}
                 ></textarea>
               </>
             </div>
 
-            <div className='result'>
+            <div className="result">
               <h5>Result</h5>
-              <div className='content'>
+              <div className="content">
                 {state.loading ? (
-                  <div className='text-center p-3'>
+                  <div className="text-center p-3">
                     <CircularProgress />
                   </div>
                 ) : (
@@ -102,11 +105,14 @@ function Index() {
                           text={state.payload}
                           onCopy={handleCopy}
                         >
-                          <span>
-                            COPY TEXT
-                            <Icon icon='ic:sharp-content-copy' height='25' />
-                          </span>
+                          <Icon icon="carbon:copy" height="25" />
                         </CopyToClipboard>
+
+                        <Icon
+                          icon="carbon:microphone-filled"
+                          height="25"
+                          onClick={() => convert(state.payload)}
+                        />
                       </h6>
                     )}
                   </>
@@ -115,7 +121,7 @@ function Index() {
             </div>
 
             <button
-              className='btn btn-danger animate__animated animate__bounceIn'
+              className="btn btn-danger animate__animated animate__bounceIn"
               onClick={handleSubmit}
             >
               Translate
@@ -125,7 +131,7 @@ function Index() {
       </div>
 
       <Alert open={state.open} msg={state.message} onClose={handleClose} />
-      <Alert open={open} msg='Copied' onClose={handleCloseC} />
+      <Alert open={open} msg="Copied" onClose={handleCloseC} />
     </div>
   );
 }

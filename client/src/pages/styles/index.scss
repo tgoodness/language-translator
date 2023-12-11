@@ -108,13 +108,12 @@
           font-size: 18px;
           text-align: right;
           margin-top: 20px;
-          span{
-            &:hover {
-              cursor: pointer;
-            }
-          }
+         
           svg{
             margin-left: 8px;
+            &:hover{
+              cursor: pointer;
+            }
           }
 
         }
